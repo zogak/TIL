@@ -1,6 +1,9 @@
 #OS file
 .DS_Store
 
+#tensorflow venv
+TF/
+
 #fast campus app file ignore
 flask/goalToComplete/app.py
 
