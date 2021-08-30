@@ -11,6 +11,7 @@ from PIL import Image
 app = Flask(__name__)
 
 model = load_model('fashion-mnist.h5')
+labels = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
 def model_predict(img_path, model):
     img = image.load_img(img_path, target_size=(28,28))
@@ -36,8 +37,10 @@ def upload():
         f.save(file_path)
 
         preds = model_predict(file_path, model)
+        pred = np.argmax(preds)
+        res = labels[pred]
 
-        return str(preds)
+        return str(res)
     
     return 'error'
 
